@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { minutesNumber, hourNumber } from '../utils/fixNumber';
-import useSelect from '../hooks/useSelect';
-import { AlarmContext } from '../context/Alarm';
+import { minutesNumber, hourNumber } from '../Utils/fixNumber';
+import useSelect from '../Hooks/useSelect';
+import { AlarmContext } from '../AlarmContext/Alarm';
 import './AlarmOption.css';
 
 const AlarmOption = () => {

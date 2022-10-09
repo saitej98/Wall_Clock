@@ -1,20 +1,18 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { createContext } from "react";
-import Sound from "../assets/src_assets_mixkit-casino-win-alarm-and-coins-1990.mp3";
+import React, { createContext, useEffect, useState } from 'react';
+import months from '../Constant/Months';
+import Sound from '../assets/alarm.mp3';
 
-const Alarm = new Audio(Sound);
+const alarm = new Audio(Sound);
 export const AlarmContext = createContext();
 
 function Alarm({ children }) {
-  const [hourDigital, setHourDigital] = useState("");
-  const [minutesDigital, setMinutesDigital] = useState("");
-  const [amPm, setAmPm] = useState("");
-  const [dayNow, setDayNow] = useState("");
-  const [monthNow, setMonthNow] = useState("");
-  const [yearNow, setYearNow] = useState("");
-  const [alarmTime, setAlarmTime] = useState("");
+  const [hourDigital, setHourDigital] = useState('');
+  const [minutesDigital, setMinutesDigital] = useState('');
+  const [amPm, setAmPm] = useState('');
+  const [dayNow, setDayNow] = useState('');
+  const [monthNow, setMonthNow] = useState('');
+  const [yearNow, setYearNow] = useState('');
+  const [alarmTime, setAlarmTime] = useState('');
   const [hasAlarm, setHasAlarm] = useState(false);
 
   useEffect(() => {
@@ -29,28 +27,30 @@ function Alarm({ children }) {
 
       if (HH >= 12) {
         HH = HH - 12;
-        ampm = "PM";
+        ampm = 'PM';
       } else {
-        ampm = "AM";
+        ampm = 'AM';
       }
-      if (HH === 0) {
-        HH = 12;
-      }
-      if (HH < 10) {
-        HH = `0${HH}`;
-      }
-      if (MM < 10) {
-        MM = `0${MM}`;
-      }
+      if (HH === 0) HH = 12;
+      if (HH < 10) HH = `0${HH}`;
+      if (MM < 10) MM = `0${MM}`;
+
+      setHourDigital(HH);
+      setMinutesDigital(MM);
+      setAmPm(ampm);
+      setDayNow(day);
+      setMonthNow(months[month]);
+      setYearNow(year);
     }, 1000);
   }, []);
+
   if (alarmTime === `${hourDigital}:${minutesDigital} ${amPm}`) {
-    Alarm.play();
-    Alarm.loop = true;
+    alarm.play();
+    alarm.loop = true;
   }
   const pauseAlarm = () => {
-    Alarm.pause();
-    setAlarmTime("");
+    alarm.pause();
+    setAlarmTime('');
   };
   return (
     <AlarmContext.Provider

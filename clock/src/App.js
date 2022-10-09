@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Alarm from "./AlarmContext/Alarm";
+import AnalogClock from "./Components/AnalogClock";
+import AlarmOption from "./Components/AlarmOption";
+import DigitalClock from "./Components/DigitalClock";
+import ProximitySensor,{onMouseMove} from "./Components/ProximitySensor";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="clock container" onMouseMove={onMouseMove}>
+      <ProximitySensor />
+      <div className="clock-container grid">
+        <div className="clock-content grid">
+          <Alarm>
+            <AnalogClock />
+            <DigitalClock />
+            <AlarmOption />
+          </Alarm>
+        </div>
+      </div>
+    </section>
   );
 }
 

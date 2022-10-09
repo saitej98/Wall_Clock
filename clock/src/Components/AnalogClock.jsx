@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FcAlarmClock } from 'react-icons/fc';
-import { AlarmContext } from '../context/Alarm';
+import { AlarmContext } from '../AlarmContext/Alarm';
 import './AnalogClock.css';
 
 const AnalogClock = () => {
